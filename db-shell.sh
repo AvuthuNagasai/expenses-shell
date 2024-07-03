@@ -45,7 +45,7 @@ VALIDATE $? "starting my sql server"
 #mysql_secure_installation --set-root-pass ExpenseApp@1
 #VALIDATE $? "Setting up root password"
 
-mysql_secure_installation --set-root-pass $(mysql_root_password) &>>LOGFILE
+mysql -h db-dev.devopsb78.tech -uroot -p${mysql_root_password} -e 'show databases;' &>>$LOGFILE
 
 if [ $? -ne 0 ]
 then
