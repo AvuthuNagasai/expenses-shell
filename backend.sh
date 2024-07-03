@@ -7,7 +7,8 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-
+echo "Please enter DB password:"
+read -s mysql_root_password
 
 VALIDATE(){
    if [ $1 -ne 0 ]
@@ -53,7 +54,7 @@ VALIDATE $? "Downloading the code"
 
 cd /app
 
-unzip /tmp/backend.zip
+unzip /tmp/backend.zip &>>LOGFILE
 VALIDATE $? "unzipping the content"
 
 cd /app &>>LOGFILE
@@ -70,7 +71,7 @@ VALIDATE $? "starting backend"
 systemctl enable backend &>>LOGFILE
 VALIDATE $? "enabling backend"
 
-mysql -h db-dev.devopsb78.tech -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>LOGFILE
+mysql -h db-dev.devopsb78.tech -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>LOGFILE
 VALIDATE $? "loading schema"
 
 systemctl restart backend &>>LOGFILE
