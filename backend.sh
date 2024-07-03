@@ -71,7 +71,8 @@ VALIDATE $? "starting backend"
 systemctl enable backend &>>LOGFILE
 VALIDATE $? "enabling backend"
 
-mysql -h db-dev.devopsb78.tech -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
+#mysql -h db-dev.devopsb78.tech -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
+mysql -h 172.31.86.2 -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
 VALIDATE $? "loading schema"
 
 systemctl restart backend &>>LOGFILE
