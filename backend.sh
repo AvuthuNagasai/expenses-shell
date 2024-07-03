@@ -61,7 +61,7 @@ cd /app &>>LOGFILE
 
 npm install &>>LOGFILE
 
-cp /home/ec2-user/expenses-shell/backend.service  /etc/systemd/system/backend.service
+cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
 VALIDATE $? "SystemD Expense Backend Service"
 
 systemctl daemon-reload &>>LOGFILE
@@ -71,7 +71,7 @@ VALIDATE $? "starting backend"
 systemctl enable backend &>>LOGFILE
 VALIDATE $? "enabling backend"
 
-mysql -h db-dev.devopsb78.tech -uroot -p${mysql_root_password} < /app/schema/backend.sql
+mysql -h db-dev.devopsb78.tech -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
 VALIDATE $? "loading schema"
 
 systemctl restart backend &>>LOGFILE
