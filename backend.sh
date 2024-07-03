@@ -71,8 +71,10 @@
 #systemctl enable backend &>>LOGFILE
 #VALIDATE $? "enabling backend"
 #
-##mysql -h db-dev.devopsb78.tech -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
-##mysql -h 172.31.86.2 -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
+
+#dnf install mysql -y &>>$LOGFILE
+#VALIDATE $? "Installing MySQL Client"
+
 #mysql -h db-dev.devopsb73.tech -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
 #VALIDATE $? "loading schema"
 #
