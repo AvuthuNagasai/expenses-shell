@@ -39,14 +39,14 @@ VALIDATE $? "sart nginx"
 rm -rf /usr/share/nginx/html/*
 VALIDATE $? "removing default content"
 
-curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>LOGFILE
 VALIDATE $? "downloading frontend content"
 
 cd /usr/share/nginx/html
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip &>>LOGFILE
 VALIDATE $? "Extract the frontend content."
 
-cp /home/ec2-user/expenses-shell/frontend.service /etc/nginx/default.d/expense.conf
+cp /home/ec2-user/expenses-shell/frontend.service /etc/nginx/default.d/expense.conf &>>LOGFILE
 VALIDATE $? "Create Nginx Reverse Proxy Configuration."
 
 systemctl restart nginx
