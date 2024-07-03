@@ -49,4 +49,4 @@ fi
 
 
 
-mkdir /app
+mkdir -p /app
