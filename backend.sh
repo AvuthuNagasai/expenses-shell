@@ -160,8 +160,8 @@ VALIDATE $? "Enabling backend"
 dnf install mysql -y &>>$LOGFILE
 VALIDATE $? "Installing MySQL Client"
 
-mysql -h db-dev.devopsb73.tech -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
-#mysql -h 172.31.191.191 -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
+#mysql -h db-dev.devopsb73.tech -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
+mysql -h 172.31.84.205 -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
 VALIDATE $? "Schema loading"
 
 systemctl restart backend &>>$LOGFILE
