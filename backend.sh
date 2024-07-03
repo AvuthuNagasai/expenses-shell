@@ -62,7 +62,7 @@ cd /app &>>LOGFILE
 npm install &>>LOGFILE
 
 cp /home/ec2-user/expenses-shell/backend.service  /etc/systemd/system/backend.service
-Validate $? "SystemD Expense Backend Service"
+VALIDATE $? "SystemD Expense Backend Service"
 
 systemctl daemon-reload &>>LOGFILE
 VALIDATE $? "daemon-reload"
